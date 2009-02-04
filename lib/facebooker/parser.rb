@@ -362,6 +362,18 @@ module Facebooker
     end
   end
   
+  class EventsCreate < Parser#:nodoc:
+    def self.process(data)
+      element('events_create_response', data)
+    end
+  end
+  
+  class EventsCancel < Parser#:nodoc:
+    def self.process(data)
+      element('events_cancel_response', data)
+    end
+  end
+  
   class GroupGetMembers < Parser#:nodoc:
     def self.process(data)
       root = element('groups_getMembers_response', data)
@@ -536,6 +548,8 @@ module Facebooker
       'facebook.photos.addTag' => AddTags,
       'facebook.photos.upload' => UploadPhoto,
       'facebook.events.get' => EventsGet,
+      'facebook.events.create' => EventsCreate,
+      'facebook.events.cancel' => EventsCancel,
       'facebook.groups.get' => GroupsGet,
       'facebook.events.getMembers' => EventMembersGet,
       'facebook.groups.getMembers' => GroupGetMembers,

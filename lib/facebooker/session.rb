@@ -341,6 +341,14 @@ module Facebooker
       post("facebook.feed.publishUserAction", parameters)
     end
     
+    ##
+    # Sets a user's RSVP status for an event.
+    # see http://wiki.developers.facebook.com/index.php/Events.rsvp
+    #
+    def rsvp_event(event_id, rsvp_status)
+      post("facebook.events.rsvp", {:eid => event_id, :rsvp_status => rsvp_status})
+    end
+    
     
     ##
     # Send email to as many as 100 users at a time

@@ -374,6 +374,12 @@ module Facebooker
     end
   end
   
+  class EventsRsvp < Parser#:nodoc:
+    def self.process(data)
+      element('events_rsvp_response', data).children[0] == "1"
+    end
+  end
+  
   class GroupGetMembers < Parser#:nodoc:
     def self.process(data)
       root = element('groups_getMembers_response', data)
@@ -550,6 +556,7 @@ module Facebooker
       'facebook.events.get' => EventsGet,
       'facebook.events.create' => EventsCreate,
       'facebook.events.cancel' => EventsCancel,
+      'facebook.events.rsvp' => EventsRsvp,
       'facebook.groups.get' => GroupsGet,
       'facebook.events.getMembers' => EventMembersGet,
       'facebook.groups.getMembers' => GroupGetMembers,
